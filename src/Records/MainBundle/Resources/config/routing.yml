@@ -9,3 +9,7 @@ create_record:
 move_record:
     path:    /move
     defaults: { _controller: MainBundle:Default:move }
+
+create_and_move_record:
+    path:    /createAndMove
+    defaults: { _controller: MainBundle:Default:createAndMove }
