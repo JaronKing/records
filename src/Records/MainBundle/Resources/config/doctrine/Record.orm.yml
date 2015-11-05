@@ -1,0 +1,21 @@
+Records\MainBundle\Entity\Record:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        dateCreated:
+            type: datetime
+        name:
+            type: string
+            length: 255
+        score:
+            type: integer
+        type:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

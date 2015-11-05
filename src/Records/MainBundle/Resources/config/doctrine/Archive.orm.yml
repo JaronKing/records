@@ -1,0 +1,19 @@
+Records\MainBundle\Entity\Archive:
+    type: entity
+    table: null
+    repositoryClass: Records\MainBundle\Entity\ArchiveRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        dateCreated:
+            type: datetime
+        type:
+            type: string
+            length: 255
+        score:
+            type: integer
+    lifecycleCallbacks: {  }

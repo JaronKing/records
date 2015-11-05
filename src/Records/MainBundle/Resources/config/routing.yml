@@ -1,0 +1,11 @@
+main_homepage:
+    path:     /
+    defaults: { _controller: MainBundle:Default:index }
+
+create_record:
+    path:     /create
+    defaults: { _controller: MainBundle:Default:create }
+
+move_record:
+    path:    /move
+    defaults: { _controller: MainBundle:Default:move }

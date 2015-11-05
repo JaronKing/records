@@ -1,0 +1,7 @@
+{% extends 'MainBundle:Default:index.html.twig' %}
+{% block body %}
+    ID ----- Name ----- Score ----- Type<br/>
+    {% for record in records %}
+        {{ record.id }} - {{ record.name }} - {{ record.score }} - {{ record.type }}<br/>
+    {% endfor %}
+{% endblock %}
