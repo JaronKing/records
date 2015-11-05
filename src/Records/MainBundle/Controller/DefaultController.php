@@ -64,7 +64,7 @@ class DefaultController extends Controller
         foreach( $archives as $dateCreated => $value) {
             foreach ($value as $type => $amountOfStudents ) {
                 $archive = new Archive();
-                $archive->setDateCreated(new \DateTime('now'));
+                $archive->setDateCreated(new \DateTime($dateCreated));
                 $archive->setType('Total_' . $type);
                 $archive->setScore($amountOfStudents);
                 $em->persist($archive);
@@ -78,6 +78,10 @@ class DefaultController extends Controller
         ));
     }
 
+    /**
+     * Create and move data in one call
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     function createAndMoveAction()
     {
         $em = $this->getDoctrine()->getManager();
@@ -115,7 +119,7 @@ class DefaultController extends Controller
         foreach( $archives as $dateCreated => $value) {
             foreach ($value as $type => $amountOfStudents ) {
                 $archive = new Archive();
-                $archive->setDateCreated(new \DateTime('now'));
+                $archive->setDateCreated(new \DateTime($dateCreated));
                 $archive->setType('Total_' . $type);
                 $archive->setScore($amountOfStudents);
                 $em->persist($archive);
