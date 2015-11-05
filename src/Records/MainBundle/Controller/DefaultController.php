@@ -64,7 +64,7 @@ class DefaultController extends Controller
         foreach( $archives as $dateCreated => $value) {
             foreach ($value as $type => $amountOfStudents ) {
                 $archive = new Archive();
-                $archive->setDateCreated($dateCreated);
+                $archive->setDateCreated(new \DateTime('now'));
                 $archive->setType('Total_' . $type);
                 $archive->setScore($amountOfStudents);
                 $em->persist($archive);
