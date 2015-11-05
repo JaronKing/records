@@ -1,0 +1,21 @@
+{% extends 'MainBundle:Default:index.html.twig' %}
+{% block body %}
+    <div style="width: 30%; float: left;">
+        <h2>Student Exams</h2>
+    Date ----- ID ----- Name ----- Score ----- Type<br/>
+    {% for record in records %}
+        {{ record.dateCreated|date('Y-m-d H:i:s') }} - {{ record.id }} - {{ record.name }} - {{ record.score }} - {{ record.type }}<br/>
+    {% endfor %}
+    </div>
+    <div style="width: 30% float: right;">
+        <h2>Total Types Of Exams Taken</h2>
+    Date ----- Type ----- Score<br/>
+    {% for key, archive in archives %}
+        {% for key2, score in archive %}
+            {{ key }} - {{ key2 }} - {{ score }}<br/>
+        {% endfor %}
+    {% endfor %}
+    </div>
+    {#{{ dump(archives) }}#}
+    {#{{ dump(records) }}#}
+{% endblock %}

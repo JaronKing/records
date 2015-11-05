@@ -22,19 +22,12 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $records = array();
         for($i = 0; $i < 22; $i++){
-            $record = new Record();
-            $record->setDateCreated(new \DateTime('now'));
-            $record->setName(uniqid());
-            $record->setScore(rand(1,100));
-            $record->setType(rand(1,10));
-            $record->setArchived(false);
-            $records[] = $record;
-            $em->persist($record);
+            $em = $this->createRandomRecord($em);
         }
         $em->flush();
 
         return $this->render('MainBundle:Default:create.html.twig', array(
-            'records' => $records
+            'records' => array()
         ));
     }
 
@@ -63,11 +56,7 @@ class DefaultController extends Controller
 
         foreach( $archives as $dateCreated => $value) {
             foreach ($value as $type => $amountOfStudents ) {
-                $archive = new Archive();
-                $archive->setDateCreated(new \DateTime($dateCreated));
-                $archive->setType('Total_' . $type);
-                $archive->setScore($amountOfStudents);
-                $em->persist($archive);
+                $em = $this->createArchive($em, $dateCreated, $type, $amountOfStudents);
             }
         }
         $em->flush();
@@ -87,14 +76,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $records = array();
         for($i = 0; $i < 22; $i++){
-            $record = new Record();
-            $record->setDateCreated(new \DateTime('now'));
-            $record->setName(uniqid());
-            $record->setScore(rand(1,100));
-            $record->setType(rand(1,10));
-            $record->setArchived(false);
-            $records[] = $record;
-            $em->persist($record);
+            $em = $this->createRandomRecord($em);
         }
         $em->flush();
 
@@ -112,25 +94,42 @@ class DefaultController extends Controller
             $score = $value->getScore();
             if (!isset($archives[$dateCreated])) $archives[$dateCreated] = array();
             if (!isset($archives[$dateCreated][$type])) $archives[$dateCreated][$type] = 0;
-
             $archives[$dateCreated][$type] ++;
         }
 
         foreach( $archives as $dateCreated => $value) {
             foreach ($value as $type => $amountOfStudents ) {
-                $archive = new Archive();
-                $archive->setDateCreated(new \DateTime($dateCreated));
-                $archive->setType('Total_' . $type);
-                $archive->setScore($amountOfStudents);
-                $em->persist($archive);
+                $em = $this->createArchive($em, $dateCreated, $type, $amountOfStudents);
             }
         }
         $em->flush();
 
         return $this->render('MainBundle:Default:createAndMoveRecord.html.twig', array(
-            'records' => $records,
+            'records' => $records2,
             'records2' => $records2,
             'archives' => $archives,
         ));
+    }
+
+    private function createRandomRecord($em){
+        $record = new Record();
+        $record->setDateCreated(new \DateTime('now'));
+        $record->setName(uniqid());
+        $record->setScore(rand(1,100));
+        $record->setType(rand(1,10));
+        $record->setArchived(false);
+        $records[] = $record;
+        $em->persist($record);
+        return $em;
+    }
+
+    private function createArchive($em, $dateCreated, $type, $amountOfStudents)
+    {
+        $archive = new Archive();
+        $archive->setDateCreated(new \DateTime($dateCreated));
+        $archive->setType('Total_' . $type);
+        $archive->setScore($amountOfStudents);
+        $em->persist($archive);
+        return $em;
     }
 }
