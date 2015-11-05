@@ -138,4 +138,33 @@ class Record
     {
         return $this->type;
     }
+    /**
+     * @var boolean
+     */
+    private $archived;
+
+
+    /**
+     * Set archived
+     *
+     * @param boolean $archived
+     *
+     * @return Record
+     */
+    public function setArchived($archived)
+    {
+        $this->archived = $archived;
+
+        return $this;
+    }
+
+    /**
+     * Get archived
+     *
+     * @return boolean
+     */
+    public function getArchived()
+    {
+        return $this->archived;
+    }
 }

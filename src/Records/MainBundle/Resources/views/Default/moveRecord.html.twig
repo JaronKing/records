@@ -4,4 +4,9 @@
     {% for record in records %}
         {{ record.id }} - {{ record.name }} - {{ record.score }} - {{ record.type }}<br/>
     {% endfor %}
+
+
+    ID ----- Name ----- Score ----- Type<br/>
+    {{ dump(archives) }}
+    {{ dump(records) }}
 {% endblock %}

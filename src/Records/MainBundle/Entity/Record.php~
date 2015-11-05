@@ -139,4 +139,3 @@ class Record
         return $this->type;
     }
 }
-
