@@ -1,5 +1,11 @@
-test.dev
+How To Install
 ========
 
-A Symfony project created on November 4, 2015, 7:16 pm.
+Create and setup a new Symfony 2 project
+Clone test.dev to project
+Run `app/console doctrine:database:create`
+Run `app/console doctrine:schema:update --force --dump-sql`
 
+What this application does
+========
+Create records with random attributes and then moves those records to an archive
